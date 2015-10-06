@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Encuentra las parejas</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_reset">Reiniciar</string>
+</resources>
