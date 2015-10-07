@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ultimaCarta = null;
         ultimaImage = null;
         contadorDeAciertos = 0;
+        intentos = 0;
         setTableroConImagenes();
     }
 
