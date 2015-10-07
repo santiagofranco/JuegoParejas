@@ -22,17 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean segundaCarta;
     private int contadorDeAciertos;
     private ImageView ivPulsada;
-    private boolean tapando = false; // Variable que hace de bandera para que el hilo principal no se ejecute mientras el HiloTapar esta esperando
+    private boolean tapando = false;
     private int intentos = 0;
 
-    /**
-     * En android no se hereda de Thread sino de AsyncTask para generar nuevos hilos
-     * Lo de integer, integer, integer Paco no lo explico, dijo que pusieramos eso que ya lo explicara
-     * El metodo doInBackground se tiene que implementar obligatoriamente, si en éste metodo se intenta
-     *   pintar algo en pantalla generara errores (incluido los Toast) por eso lo de pintar se hace en
-     *   otros metodos segun convenga, en este caso se pinta en pantalla el reverso de las cartas en onPostExecute
-     *   que se ejecuta cuando termina doInBackground
-     */
     private class HiloTapar extends AsyncTask<Integer, Integer, Integer> {
 
         @Override
@@ -49,11 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    /**
-     * En clase solo vimos el HiloTapar, este otro lo necesitaba para mostrar los mensajes
-     * y que se reiniciar el juego despues de ellos, por eso uso onPreExecute
-     * iniciarJuego se llama en ese metodo por que pinta en pantalla
-     */
     private class HiloMensajes extends AsyncTask<Integer, Integer, Integer> {
 
         @Override
@@ -123,19 +110,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_reset) {
             iniciarJuego();
         }
